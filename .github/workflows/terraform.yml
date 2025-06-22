@@ -18,9 +18,9 @@ jobs:
         with:
           terraform_version: 1.7.5
       - name: Configuring environment variables
-        run: export AWS_ACCESS_KEY="${AWS_ACCESS_KEY}"
+        run: export AWS_ACCESS_KEY_ID="${AWS_ACCESS_KEY}"
       - name: Configuring environment variables
-        run: export AWS_SECRET_KEY="${AWS_SECRET_KEY}"
+        run: export AWS_SECRET_ACCESS_KEY="${AWS_SECRET_KEY}"
       - name: Configuring environment variables
         run: export REGION="${REGION}"
         
