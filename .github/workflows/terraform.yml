@@ -22,7 +22,7 @@ jobs:
       - name: Configuring environment variables
         run: export AWS_SECRET_ACCESS_KEY="${AWS_SECRET_KEY}"
       - name: Configuring environment variables
-        run: export REGION="${REGION}"
+        run: export AWS_DEFAULT_REGION="${REGION}"
         
       - name: Terraform format check
         run: terraform fmt
