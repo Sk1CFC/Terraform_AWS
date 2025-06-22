@@ -6,6 +6,10 @@ jobs:
   Deploy:
     name: Terraform deployment
     runs-on: ubuntu-latest
+    env:
+          AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY }}
+          AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_KEY }}
+          REGION: ${{ secrets.REGION }}
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -13,11 +17,11 @@ jobs:
         uses: hashicorp/setup-terraform@v3
         with:
           terraform_version: 1.7.5
-      - name: Setting up environment variables
-        env:
-          AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY }}
-          AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_KEY }}
-          REGION: ${{ secrets.REGION }}
+      - name: Configuring environment variables
+        run: export AWS_ACCESS_KEY="${AWS_ACCESS_KEY}"
+        run: export AWS_SECRET_KEY="${AWS_SECRET_KEY}"
+        run: export REGION="${REGION}"
+        
       - name: Terraform format check
         run: terraform fmt
       - name: Initialize terraform configuration directory
